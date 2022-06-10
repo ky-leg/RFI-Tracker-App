@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :projects, through: :enrollments
     has_many :rfis
+    has_many :projects, through: :rfis
 
     validates :email, uniqueness: true, presence: true
 
