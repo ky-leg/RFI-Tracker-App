@@ -46,6 +46,9 @@ function App() {
    <NavBar user={user} setUser={setUser} />
     <main>
         <Switch>
+          <Route exact path="/">
+            <ProjectList projects = {projects}/>
+          </Route>
           <Route exact path="/rfis/new">
             <NewRFI projects={projects} user={user} setProjects={setProjects}/>
           </Route>
