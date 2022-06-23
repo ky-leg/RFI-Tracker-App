@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const COLORS = {
   primary: {
-    "--main": "steelblue",
+    "--main": "red",
     "--accent": "white",
   },
   secondary: {
@@ -11,7 +11,7 @@ const COLORS = {
   },
 };
 
-function Button({ variant = "fill", color = "primary", ...props }) {
+function DeleteButton({ variant = "fill", color = "primary", ...props }) {
   let Component;
   if (variant === "fill") {
     Component = FillButton;
@@ -50,4 +50,4 @@ const OutlineButton = styled(ButtonBase)`
   }
 `;
 
-export default Button;
+export default DeleteButton;

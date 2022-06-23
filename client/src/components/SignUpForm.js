@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
 function SignUpForm({ onLogin }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [bio, setBio] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [role, setRole] = useState("-");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,11 +21,12 @@ function SignUpForm({ onLogin }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        email,
         password,
         password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
+        first_name: firstName,
+        organization,
+        role,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -39,13 +41,13 @@ function SignUpForm({ onLogin }) {
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
-        <Label htmlFor="username">Username</Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           type="text"
           id="username"
           autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </FormField>
       <FormField>
@@ -69,22 +71,34 @@ function SignUpForm({ onLogin }) {
         />
       </FormField>
       <FormField>
-        <Label htmlFor="imageUrl">Profile Image</Label>
+        <Label htmlFor="firstName">First Name</Label>
         <Input
           type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          id="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
       </FormField>
       <FormField>
-        <Label htmlFor="bio">Bio</Label>
-        <Textarea
-          rows="3"
-          id="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
+        <Label htmlFor="organization">Organization</Label>
+        <Input
+          type="text"
+          id="organization"
+          value={organization}
+          onChange={(e) => setOrganization(e.target.value)}
         />
+      </FormField>
+      <FormField>
+        <Label htmlFor="role">Role</Label>
+        <select
+          id="role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="Civil Engineer">Civil Engineer</option>
+          <option value="Architect">Architect</option>
+          <option value="Superintendent">Superintendent</option>
+        </select>
       </FormField>
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>

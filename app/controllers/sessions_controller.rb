@@ -8,5 +8,14 @@ class SessionsController < ApplicationController
             render json: {errors: ["Not authorized"]}, status: :unauthorized
         end
     end
+
+    def destroy
+        if session[:user_id]
+            session.delete :user_id
+            head :no_content
+        else
+            render json: { errors: ["No user logged in"] }, status: :unauthorized
+        end
+    end
     
 end
