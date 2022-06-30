@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"; 
 import styled from "styled-components";
 import { Box, Button, DeleteButton } from "../styles";
-import { BrowserRouter as Router,Link, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Link, useParams } from "react-router-dom";
  
 
 function RFIList({user}) {
@@ -23,8 +23,16 @@ function RFIList({user}) {
         setIsLoading(true);
         fetch(`/rfis/${id}`, {
           method: "DELETE",
-        }).then(window.location.reload());
+        })
+        .then(() => {
+            const newRfis = project.rfis.filter(rfi => (rfi.id !== id))
+            setProject({...project, rfis: newRfis})
+        });
     }
+
+  
+
+
     
     if (!project) return <p>Loading...</p>;
 
@@ -59,7 +67,7 @@ function RFIList({user}) {
                 <>
                     <h2>No RFIs Found</h2>
                     <Router>
-                        <Button as = {Link} to="/projects">
+                        <Button as={Link} to="/">
                             Back To Homepage
                         </Button>
                     </Router>

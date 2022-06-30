@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useRouteMatch, useParams } from "react-router-dom"; 
+import { Switch, Route, useRouteMatch, useParams, Redirect } from "react-router-dom"; 
 import NavBar from "./NavBar";
 import Login from "../pages/Login"
 import ProjectList from "../pages/ProjectList";
@@ -14,14 +14,14 @@ function App() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([]);
 
-    const params = useParams();
-    console.log("these are params", params);
+  const params = useParams();
+  console.log("these are params", params);
 
-    useEffect(() => {
-        fetch("/projects")
-        .then((r) => r.json())
-        .then(setProjects)
-    }, []);
+  useEffect(() => {
+      fetch("/projects")
+      .then((r) => r.json())
+      .then(setProjects)
+  }, []);
 
     console.log(projects)
 
@@ -45,10 +45,11 @@ function App() {
    <>
    <NavBar user={user} setUser={setUser} />
     <main>
+      
         <Switch>
           <Route exact path="/">
-            <ProjectList projects = {projects}/>
-          </Route>
+            <Redirect to="/projects"/>
+          </Route>  
           <Route exact path="/rfis/new">
             <NewRFI projects={projects} user={user} setProjects={setProjects}/>
           </Route>
