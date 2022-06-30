@@ -44,7 +44,7 @@ function RFIList({user}) {
                     <RFI key={rfi.id}>
                         <Box>
                             <h2>{rfi.title}</h2>
-                            <h4>RFI Creator: {rfi.user_name}</h4>
+                            <h4>HELLO Creator: {rfi.user_name}</h4>
                             <em>Priority: {rfi.level}</em>
                             <p>{rfi.body}</p>
                             <Wrapper>
@@ -67,7 +67,7 @@ function RFIList({user}) {
                 <>
                     <h2>No RFIs Found</h2>
                     <Router>
-                        <Button as={Link} to="/">
+                        <Button as={Link} to="/projects">
                             Back To Homepage
                         </Button>
                     </Router>
