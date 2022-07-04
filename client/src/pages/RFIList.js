@@ -66,11 +66,11 @@ function RFIList({user}) {
             ) : (
                 <>
                     <h2>No RFIs Found</h2>
-                    <Router>
+                    <>
                         <Button as={Link} to="/projects">
                             Back To Homepage
                         </Button>
-                    </Router>
+                    </>          
                 </>
             )}
         </Wrapper>
