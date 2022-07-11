@@ -17,7 +17,11 @@ class ProjectsController < ApplicationController
         render json: projects, status: :created
     end
 
-
+    def show_projects
+        user = User.find(params[:id])
+        projects = user.projects
+        render json: projects
+    end
 
     private
     def invalid_record(invalid)

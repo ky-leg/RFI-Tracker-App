@@ -7,7 +7,8 @@ import NewRFI from "../pages/NewRFI";
 import RFIList from "../pages/RFIList";
 import Params from "./Params"
 import NewProject from "../pages/NewProject";
-import ModifyRFI from "../pages/ModifyRFI"
+import ModifyRFI from "../pages/ModifyRFI";
+import UsersProjects from "../pages/UsersProjects"
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
       .then(setProjects)
   }, []);
 
-    console.log(projects)
+    console.log(user)
 
   useEffect(() => {
     // auto-login
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route path={`/rfis/:id`}>
             <ModifyRFI setProjects={setProjects}/>
+          </Route>
+          <Route path={`/users/:id`}>
+            <UsersProjects user={user}/>
           </Route>
         </Switch>
 

@@ -18,6 +18,9 @@ function NavBar({ user, setUser }) {
           <Link to="/projects">RFI Tracker</Link>
       </Logo>
       <Nav>
+          <Button as={Link} to={`/users/${user.id}`}>
+            My Projects
+          </Button>
           <Button as={Link} to="/rfis/new">
             New RFI
           </Button>

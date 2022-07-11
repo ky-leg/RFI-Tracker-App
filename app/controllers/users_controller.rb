@@ -15,6 +15,13 @@ class UsersController < ApplicationController
         end
     end
 
+ 
+
+    def find_project 
+        project = Project.find_by(title: params[:search])
+        render json: project
+    end
+
     def create 
         user = User.create(user_params)
         if user.valid? 
